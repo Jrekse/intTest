@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import starwars from "../APIs/starwars";
 import cats from '../APIs/cats';
-import covid from '../APIs/covid';
+// import covid from '../APIs/covid';
 import random from '../APIs/random'
 
+import '../Assets/style.css'
+
 function MainFunctional() {
-  const [data, setSWData] = useState([]);
-  const [covData, setCovData] = useState([])
+  const [SWdata, setSWData] = useState([]); const [shipData, setShipData] = useState([]); const [planetData, setPlanetData] = useState([]);
+  // const [covData, setCovData] = useState([])
   const [catData, setCatData] = useState([])
   const [userData, setUserData] = useState([])
 
-  useEffect(() => {
-    covid.getCurrentCovidStats().then((response) => {
-      console.log("covid", response);
-      setCovData(response);
-    });
-  }, []);
+  // useEffect(() => {
+  //   covid.getCurrentCovidStats().then((response) => {
+  //     console.log("covid", response);
+  //     setCovData(response);
+  //   });
+  // }, []);
 
   useEffect(() => {
     starwars.getPeople().then((response) => {
@@ -24,11 +26,11 @@ function MainFunctional() {
     });
     starwars.getPlanets().then((response) => {
       console.log("star wars pl", response);
-      // setSWData(response);
+      setPlanetData(response);
     });
     starwars.getStarships().then((response) => {
       console.log("star wars ships", response);
-      // setSWData(response);
+      setShipData(response);
     });
   }, []);
 
@@ -48,8 +50,17 @@ function MainFunctional() {
 
   return (
     <div className="App">
-      {data.map((item, index) => {
-        return <div key={index}>name: {item.name}</div>;
+      {SWdata.map((item, index) => {
+        return <div key={index}>Captain: {item.name}</div>;
+      })}
+      {shipData.map((ship, index) => {
+        return <div key={index}>Ship: {ship.name}</div>
+      })}
+      {planetData.map((planet, index) => {
+        return <div key={index}>Planet: {planet.name}</div>
+      })}
+      {catData.map((cat, index) => {
+        return <img class='catImgs' src={cat.url} alt='cat' key={index}/>
       })}
     </div>
   );
