@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import starwars from "../APIs/starwars";
 import cats from '../APIs/cats';
 import covid from '../APIs/covid';
+import random from '../APIs/random'
 
 function MainFunctional() {
   const [data, setSWData] = useState([]);
   const [covData, setCovData] = useState([])
   const [catData, setCatData] = useState([])
+  const [userData, setUserData] = useState([])
 
   useEffect(() => {
     covid.getCurrentCovidStats().then((response) => {
@@ -34,6 +36,13 @@ function MainFunctional() {
     cats.get100Cats().then((response) => {
       console.log("cats", response);
       setCatData(response);
+    });
+  }, []);
+
+  useEffect(() => {
+    random.getUsers().then((response) => {
+      console.log("users", response);
+      setUserData(response);
     });
   }, []);
 
