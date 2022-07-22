@@ -1,3 +1,16 @@
 .catImgs{
     width: 50%;
 }
+.searchBar{
+    text-align: center;
+}
+.searchInput{
+    width: 25%;
+    height: 30px;
+    border-radius: 8px;
+}
+@media only screen and (max-width: 600px) {
+    .searchInput{
+        width: 50%;
+    }
+}

@@ -4,10 +4,12 @@ import cats from '../APIs/cats';
 // import covid from '../APIs/covid';
 import random from '../APIs/random'
 
+import Search from "./Search";
+
 import '../Assets/style.css'
 
 function MainFunctional() {
-  const [SWdata, setSWData] = useState([]); const [shipData, setShipData] = useState([]); const [planetData, setPlanetData] = useState([]);
+   const [shipData, setShipData] = useState([]); const [planetData, setPlanetData] = useState([]);
   // const [covData, setCovData] = useState([])
   const [catData, setCatData] = useState([])
   const [userData, setUserData] = useState([])
@@ -20,10 +22,6 @@ function MainFunctional() {
   // }, []);
 
   useEffect(() => {
-    starwars.getPeople().then((response) => {
-      console.log("star wars", response);
-      setSWData(response);
-    });
     starwars.getPlanets().then((response) => {
       console.log("star wars pl", response);
       setPlanetData(response);
@@ -50,9 +48,7 @@ function MainFunctional() {
 
   return (
     <div className="App">
-      {SWdata.map((item, index) => {
-        return <div key={index}>Captain: {item.name}</div>;
-      })}
+      <Search/>
       {shipData.map((ship, index) => {
         return <div key={index}>Ship: {ship.name}</div>
       })}
@@ -60,7 +56,7 @@ function MainFunctional() {
         return <div key={index}>Planet: {planet.name}</div>
       })}
       {catData.map((cat, index) => {
-        return <img class='catImgs' src={cat.url} alt='cat' key={index}/>
+        return <img className='catImgs' src={cat.url} alt='cat' key={index}/>
       })}
     </div>
   );
