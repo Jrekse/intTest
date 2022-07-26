@@ -7,7 +7,7 @@ const cats = {
   get100Cats: async () => {
     try {
       const response = await axios.get(
-        "https://api.thecatapi.com/v1/images/search?limit=100"
+        "https://api.thecatapi.com/v1/images/search?limit=20"
       );
       return response.data;
     } catch (error) {
