@@ -9,6 +9,33 @@
     height: 30px;
     border-radius: 8px;
 }
+button{
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.cats{
+    background-color: orange;
+    border-radius: 10px 0px 0px 10px;
+}
+.reset{
+    background-color: red;
+    border-radius: 0px 10px 10px 0px;
+    color: white;
+}
+.all{
+    background-color: gold;
+}
+.starWars{
+    background-color: blue;
+    color: white;
+}
+.listedName{
+    color: blue;
+}
+
+
+
 @media only screen and (max-width: 600px) {
     .searchInput{
         width: 50%;

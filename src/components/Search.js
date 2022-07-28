@@ -14,7 +14,7 @@ function Search() {
 
     const dataGroup = localStorage.getItem('currentDataGroup')
 
-    const catNames = ['Cherie', 'Terry', 'Larry', 'Gary', 'Barry', 'Carrie', 'Mary', 'Jerry', 'Peri', 'Tod']
+    const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
 
     useEffect(() => {
 
@@ -49,11 +49,14 @@ function Search() {
                 event => setQuery(event.target.value)}
             />
   
-            <br/>
+            <br/><br/>
             
             <button className="cats" onClick={
                 () => filter(catData) + localStorage.setItem('currentDataGroup', "cats")
             }>Cats</button>
+            <button className="all" onClick={
+                () => filter(SWdata.concat(shipData.concat(planetData.concat(catNames)))) + localStorage.setItem('currentDataGroup', "sw")
+            }>All</button>
             <button className="starWars" onClick={
                 () => filter(SWdata) + localStorage.setItem('currentDataGroup', "sw")
             }>People</button>
@@ -63,14 +66,11 @@ function Search() {
             <button className="starWars" onClick={
                 () => filter(planetData) + localStorage.setItem('currentDataGroup', "sw")
             }>Planets</button>
-            <button className="starWars" onClick={
-                () => filter(SWdata.concat(shipData.concat(planetData))) + localStorage.setItem('currentDataGroup', "sw")
-            }>All Starwars</button>
             <button className="reset" onClick={
                 () => window.location.reload()
             }>Reset</button>
 
-            <hr/>
+            <br/><br/><hr/>
 
             {useData.filter(item => {
 
@@ -85,8 +85,8 @@ function Search() {
                 if (dataGroup === 'sw') {
 
                     return  (
-                        <div key={index}> 
-                            <p>{item.name}</p>
+                        <div className="listedName" key={index}> 
+                            <p><u>{item.name}</u></p>
                             <hr/>
                         </div>
                     )
@@ -96,7 +96,7 @@ function Search() {
                     return (
                         <div key={index}>
                             <img className='catImgs' src={item.url} alt='cat'/>
-                            <p>{catNames[index]}</p>
+                            <p className="listedName" ><u>{catNames[index].name}</u></p>
                         </div>
                     )
 
