@@ -1,13 +1,19 @@
+body{
+    background-color: #4CC9F0;
+}
 .catImgs{
     width: 50%;
+    margin-top: 10px;
 }
 .searchBar{
     text-align: center;
+    padding: 10px;
 }
 .searchInput{
     width: 25%;
     height: 30px;
     border-radius: 8px;
+    padding: 5px;
 }
 button{
     height: 30px;
@@ -15,23 +21,39 @@ button{
     padding-right: 10px;
 }
 .cats{
-    background-color: orange;
+    background-color: #4361EE;
     border-radius: 10px 0px 0px 10px;
+    color: white;
 }
 .reset{
-    background-color: red;
+    background-color: #F72585;
     border-radius: 0px 10px 10px 0px;
     color: white;
 }
 .all{
-    background-color: gold;
+    background-color: #3F37C9;
+    color:white;
 }
-.starWars{
-    background-color: blue;
+.starWarsPl{
+    background-color: #B5179E;
+    color: white;
+}
+.starWarsS{
+    background-color: #7209B7;
+    color: white;
+}
+.starWarsPe{
+    background-color: #480CA8;
     color: white;
 }
 .listedName{
     color: blue;
+    width: 50%;
+    margin-left: 25%;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 25px;
 }
 
 
@@ -39,5 +61,10 @@ button{
 @media only screen and (max-width: 600px) {
     .searchInput{
         width: 50%;
+    }
+    .listedName{
+        color: blue;
+        width: 90%;
+        margin: auto;
     }
 }
