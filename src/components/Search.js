@@ -4,22 +4,8 @@ import cats from '../APIs/cats';
 
 function Search() {
 
-
-    // const ref = useRef(null);
-    // componentDidMount() {
-        // document.getElementById('foo')
-        // .addEventListener('click', this.handleClick)
-    // }
-
-    // componentWillUnmount() {
-    //     document.getElementById('foo')
-    //     .removeEventListener('click', this.handleClick)
-    // }
-    
     const [query, setQuery] = useState("");
     const [useData, setUseData] = useState([]);
-    const [selectedProfile, selectProfile] = useState("")
-
     const [SWdata, setSWData] = useState([]);
     const [shipData, setShipData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
@@ -28,7 +14,8 @@ function Search() {
     const dataGroup = localStorage.getItem('currentDataGroup')
 
     const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
-    let array1 = []; let array2 = []; let array3 = []; let array4 = []; let array5 = []; let array6 = []; let array7 = []; let array8 = []; let array9 = []; let array10 = []
+    
+    let array1 = [0,10,20,30]; let array2 = [1,11,21,31]; let array3 = [2,12,22,32]; let array4 = [3,13,23,33]; let array5 = [4,14,24,34]; let array6 = [5,15,25,35]; let array7 = [6,16,26,36]; let array8 = [7,17,27,37]; let array9 = [8,18,28,38]; let array10 = [9,19,29,39]
 
     useEffect(() => {
 
@@ -44,17 +31,11 @@ function Search() {
             console.log("star wars pl", response);
             setPlanetData(response);
         });
+        
         cats.get100Cats().then((response) => {
             console.log("cats", response);
             setCatData(response);
         });
-
-        // const el2 = ref.current;
-        // console.log(el2)
-
-        // const el = document.getElementById('foo');
-        // console.log(el);
-        
 
     }, []);
 
@@ -102,40 +83,12 @@ function Search() {
 
                 }).map((item, index) => {
 
-                    for (let x = 0; x < 1; x++){
-
-                        let sNumber = index.toString().split('');
-
-                        if(0 === index ||'0' === sNumber[1]){
-                            array1.push(index)
-                        } else if (1 === index ||'1' === sNumber[1]){
-                            array2.push(index)
-                        } else if (2 === index ||'2' === sNumber[1]){
-                            array3.push(index)
-                        } else if (3 === index ||'3' === sNumber[1]){
-                            array4.push(index)
-                        } else if (4 === index ||'4' === sNumber[1]){
-                            array5.push(index)
-                        } else if (5 === index ||'5' === sNumber[1]){
-                            array6.push(index)
-                        } else if (6 === index ||'6' === sNumber[1]){
-                            array7.push(index)
-                        } else if (7 === index ||'7' === sNumber[1]){
-                            array8.push(index)
-                        } else if (8 === index ||'8' === sNumber[1]){
-                            array9.push(index)
-                        } else if (9 === index ||'9' === sNumber[1]){
-                            array10.push(index)
-                        }
-
-                    }
-
                     if (dataGroup === 'sw') {
 
                         return  (
                             <div className="listedName" key={index}> 
                                 <p onClick={
-                                    () => selectProfile(index) + getIt() 
+                                    () => localStorage.setItem('selectedProfile', index) + update()
                                 }><u>{item.name}</u></p>
                             {/* <p id='foo'><u>{item.name}</u></p> */}
                             </div>
@@ -147,7 +100,8 @@ function Search() {
                             <div className="listedName" key={index}>
                                 <img className='catImgs' src={item.url} alt='cat'/>
                                 <p onClick={
-                                    () => selectProfile(index) + profile()
+                                    console.log('jomam')
+                                    // () => selectProfile(index) 
                                 } ><u>{catNames[index].name}</u></p>
                             </div>
                         )
@@ -162,20 +116,18 @@ function Search() {
         
     )
 
-    function getIt(){
-        if (selectedProfile){
-            profile()
-        } else {
-            console.log('jo mama')
-        }
-    }
-
     function filter(props){
         setUseData(props)
     }
 
+    function update() {
+        console.log(localStorage.getItem('selectedProfile'))
+        profile()
+    }
+
     function profile(){
         
+        const selectedProfile = localStorage.getItem('selectedProfile')
         const BreakError = {};
         let bigArray = array1.concat(array2,array3,array4,array5,array6,array7,array8,array9,array10)
 
@@ -233,10 +185,12 @@ function Search() {
 
     }
 
-    // function handleClick() {
-    //     selectProfile(index) + profile() 
-    // };
+
+
+    
 
 }
+
+
 
 export default Search;
