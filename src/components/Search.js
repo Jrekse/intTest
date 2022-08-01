@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import starwars from "../APIs/starwars";
 import cats from '../APIs/cats';
 
+
 function Search() {
 
     const [query, setQuery] = useState("");
@@ -14,6 +15,9 @@ function Search() {
     const dataGroup = localStorage.getItem('currentDataGroup')
 
     const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
+
+    
+    let filteredItems
     
     useEffect(() => {
 
@@ -88,11 +92,14 @@ function Search() {
                     if (dataGroup === 'sw') {
 
                         return  (
-                            <div className="listedName" key={index}> 
-                                <p onClick={
+                            <div className="listedName" id="mainList" key={index}> 
+                                <p id="mainListItem" onClick={
                                     () => localStorage.setItem('selectedProfile', index) + 
-                                    localStorage.setItem('page', 'profile') + update()
+                                    localStorage.setItem('page', 'profile')  + update()
                                 }><u>{item.name}</u></p>
+                                <p className="delete" onClick={
+                                    () => remove(index)
+                                }>Delete item</p>
                             </div>
                         )
 
@@ -117,6 +124,14 @@ function Search() {
 
         
     )
+
+    function remove(props){
+        const items = useData[props]
+        filteredItems = useData.filter(item => item !== items)
+        console.log(filteredItems)
+        setUseData(filteredItems)
+        console.log(setUseData)
+    }
 
     //selects the filter being used
     function filter(props){

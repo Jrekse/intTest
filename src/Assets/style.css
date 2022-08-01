@@ -138,6 +138,21 @@ button{
     font-weight: 700;
 }
 
+.delete{
+    color: red;
+    font-weight: 500;
+    grid-area: delete;
+    text-align: right;
+    padding-right: 10px;
+}
+#mainListItem{
+    grid-area: mainlist;
+}
+#mainList{
+    display: grid;
+    grid-template-areas: "mainlist delete";
+}
+
 @media only screen and (max-width: 600px) {
     .searchInput{
         width: 50%;
