@@ -55,7 +55,34 @@ button{
     margin-bottom: 5px;
     border-radius: 25px;
 }
-
+.genProfile{
+    width: 100%;
+}
+.profTop{
+    height: 49%;
+    border-bottom: 2px solid black;
+}
+.profCaptain{
+    width: 32%;
+    border-right: 2px solid black;
+}
+.profShip{
+    width: 33%;
+    border-right: 2px solid black;
+}
+.profPlanet{
+    width: 33%;
+}
+.profBottom{
+    height: 50%;
+}
+.profCrew{
+    width: 50%;
+    border-right: 2px solid black;
+}
+.govCat{
+    width: 49%;
+}
 
 
 @media only screen and (max-width: 600px) {

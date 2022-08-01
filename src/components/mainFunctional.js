@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import random from '../APIs/random'
 import Search from "./Search";
+import Profile from "./genProfile"
 import '../Assets/style.css'
 
 function MainFunctional() {
-  // const [userData, setUserData] = useState([])
 
+  if(localStorage.getItem('page') === "search"){
+    return(<Search/>)
+  } else if (localStorage.getItem('page') === "profile"){
+    return (<Profile/>)
+  } else {
+    return(<Search/>)
+  }
 
-
-  // useEffect(() => {
-  //   random.getUsers().then((response) => {
-  //     console.log("users", response);
-  //     setUserData(response);
-  //   });
-  // }, []);
-
-  return (
-    <div className="App">
-      <Search/>
-    </div>
-  );
 }
 
 export default MainFunctional;

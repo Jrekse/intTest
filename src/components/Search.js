@@ -31,7 +31,7 @@ function Search() {
             console.log("star wars pl", response);
             setPlanetData(response);
         });
-        
+
         cats.get100Cats().then((response) => {
             console.log("cats", response);
             setCatData(response);
@@ -88,9 +88,9 @@ function Search() {
                         return  (
                             <div className="listedName" key={index}> 
                                 <p onClick={
-                                    () => localStorage.setItem('selectedProfile', index) + update()
+                                    () => localStorage.setItem('selectedProfile', index) + 
+                                    localStorage.setItem('page', 'profile') + update()
                                 }><u>{item.name}</u></p>
-                            {/* <p id='foo'><u>{item.name}</u></p> */}
                             </div>
                         )
 
@@ -100,8 +100,7 @@ function Search() {
                             <div className="listedName" key={index}>
                                 <img className='catImgs' src={item.url} alt='cat'/>
                                 <p onClick={
-                                    console.log('jomam')
-                                    // () => selectProfile(index) 
+                                    () => localStorage.setItem('selectedProfile', index) + update() 
                                 } ><u>{catNames[index].name}</u></p>
                             </div>
                         )
@@ -122,68 +121,69 @@ function Search() {
 
     function update() {
         console.log(localStorage.getItem('selectedProfile'))
-        profile()
+        console.log(localStorage.getItem('page'))
+        window.location.reload()
     }
 
-    function profile(){
+    // function profile(){
         
-        const selectedProfile = localStorage.getItem('selectedProfile')
-        const BreakError = {};
-        let bigArray = array1.concat(array2,array3,array4,array5,array6,array7,array8,array9,array10)
+    //     const selectedProfile = localStorage.getItem('selectedProfile')
+    //     const BreakError = {};
+    //     let bigArray = array1.concat(array2,array3,array4,array5,array6,array7,array8,array9,array10)
 
-        try {
+    //     try {
 
-            bigArray.filter(item => {
-                if (array1.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array1)
-                    throw BreakError
-                } else if (array2.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array2)
-                    throw BreakError
-                } else if (array3.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array3)
-                    throw BreakError
-                } else if (array4.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array4)
-                    throw BreakError
-                } else if (array5.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array5)
-                    throw BreakError
-                } else if (array6.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array6)
-                    throw BreakError
-                } else if (array7.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array7)
-                    throw BreakError
-                } else if (array8.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array8)
-                    throw BreakError
-                } else if (array9.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array9)
-                    throw BreakError
-                } else if (array10.includes(Number(selectedProfile))){
-                    console.log(selectedProfile)
-                    console.log(array10)
-                    throw BreakError
-                }
-            })
+    //         bigArray.filter(item => {
+    //             if (array1.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array1)
+    //                 throw BreakError
+    //             } else if (array2.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array2)
+    //                 throw BreakError
+    //             } else if (array3.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array3)
+    //                 throw BreakError
+    //             } else if (array4.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array4)
+    //                 throw BreakError
+    //             } else if (array5.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array5)
+    //                 throw BreakError
+    //             } else if (array6.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array6)
+    //                 throw BreakError
+    //             } else if (array7.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array7)
+    //                 throw BreakError
+    //             } else if (array8.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array8)
+    //                 throw BreakError
+    //             } else if (array9.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array9)
+    //                 throw BreakError
+    //             } else if (array10.includes(Number(selectedProfile))){
+    //                 console.log(selectedProfile)
+    //                 console.log(array10)
+    //                 throw BreakError
+    //             }
+    //         })
 
-        } catch (err) {
+    //     } catch (err) {
 
-            if (err !== BreakError) throw err;
+    //         if (err !== BreakError) throw err;
 
-        }
+    //     }
 
-    }
+    // }
 
 
 
