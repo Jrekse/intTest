@@ -5,6 +5,7 @@ import '../Assets/style.css'
 
 function MainFunctional() {
 
+  //pagination
   if(localStorage.getItem('page') === "search"){
     return(<Search/>)
   } else if (localStorage.getItem('page') === "profile"){

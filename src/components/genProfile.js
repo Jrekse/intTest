@@ -11,13 +11,11 @@ function Profile(){
     const [catData, setCatData] = useState([]);
     const [userData, setUserData] = useState([]);
 
-    // let selectedProfile = localStorage.getItem('selectedProfile');
+    let selectData = localStorage.getItem('selectedData').split(",")  //creates a new array from the stored string
 
-    let selectData = localStorage.getItem('selectedData').split(",")
+    let test = selectData[0] //targets the first number, now that I am looking back i think I overcooked this part
 
-    let test = selectData[0]
-
-    // const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
+    const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
 
     useEffect(() => {
 
@@ -44,8 +42,6 @@ function Profile(){
             setUserData(response);  
         });
 
-        // loads()
-
     }, []);
 
     return (
@@ -53,44 +49,127 @@ function Profile(){
        <div className="genProfile">
             <section className="profTop">
                 <div className="profCaptain">
-                    {SWdata.map((item, index) => {
-                        if(index === Number(test)){
-                            console.log(index)
-                            console.log(test)
-                            return <p key={index}>{item.name}</p>
-                        }
-                    })}
+                    <div className="topper">
+                        <p>Captain</p>
+                    </div>
+                    <div className="daBody">
+                        {SWdata.map((item, index) => {
+                            if(index === Number(test)){
+                                return (
+                                    <div className="profInfo">
+                                        <p key={index}>{item.name}</p>
+                                        <p key={index}>{item.height} cm</p>
+                                        <p key={index}>{item.mass} kg</p>
+                                        <p key={index}>{item.gender}</p>
+                                        <p key={index}>Born: {item.birth_year}</p>
+                                        <h4 className="backBtn" onClick={
+                                            ()=> localStorage.setItem('page', 'search') + update()
+                                        }><u>Back To Search</u></h4>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
                 <div className="profShip">
-
+                    <div className="topper">
+                        <p>Flagship</p>
+                    </div>
+                    <div className="daBody">
+                        {shipData.map((item, index) => {
+                            if(index === Number(test)){
+                                return (
+                                    <div className="profInfo">
+                                        <p key={index}>{item.name}</p>
+                                        <p key={index}>Cost: {item.cost_in_credits} Credits</p>
+                                        <p key={index}>Length: {item.length} M</p>
+                                        <p key={index}>Civilian Capacity: {item.passengers}</p>
+                                        <p key={index}>Cargo Capacity: {item.cargo_capacity} kg</p>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
                 <div className="profPlanet">
-
+                    <div className="topper">
+                        <p>Home Port</p>
+                    </div>
+                    <div className="daBody">
+                        {planetData.map((item, index) => {
+                            if(index === Number(test)){
+                                return (
+                                    <div className="profInfo">
+                                        <p key={index}>{item.name}</p>
+                                        <p key={index}>{item.population} Citizens</p>
+                                        <p key={index}>Orbital Period: {item.orbital_period} Days</p>
+                                        <p key={index}>General Climate is {item.climate}</p>
+                                        <p key={index}>Gravity: {item.gravity}</p>
+                                    </div>
+                                )
+                            }
+                        })} 
+                    </div>
                 </div>
             </section>
             <section className="profBottom">
                 <div className="profCrew">
-
+                    <div className="topper">
+                        <p>Crew Manifest</p>
+                    </div>
+                    <div className="leftCrew">
+                        {userData.map((item, index) => {
+                            const arrayOne = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+                            if(arrayOne.includes(index)){
+                                return (
+                                    <p key={index}>{item.name.first} {item.name.last}</p>
+                                )
+                            }
+                        })} 
+                    </div>
+                    <hr/>
+                    <div className="rightCrew">
+                        {userData.map((item, index) => {
+                            const arrayTwo = [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+                            if(arrayTwo.includes(index)){
+                                return (
+                                    <p key={index}>{item.name.first} {item.name.last}</p>
+                                )
+                            }
+                        })} 
+                    </div>  
                 </div>
                 <div className="govCat">
-
+                    <div className="topper">
+                        <p>Government Assigned Cat (GAT)</p>
+                    </div>
+                    <div className="daBody">
+                        {catData.map((item, index) => {
+                            if(index === Number(test)){
+                                return(
+                                    <div className="profCatList" key={index}>
+                                        <img className='profCatImg' src={item.url} alt='cat'/>
+                                        <p>{catNames[index].name}</p>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
                 </div>
             </section>
        </div>
 
     )
 
-    // function loadarray(){
-
-    //     let selectData = localStorage.getItem('selectedData')
-    //     // let dataArray = [SWdata[selectData], shipData[selectData], planetData[selectData], catData[selectData],userData[selectData]]
-
-    //     // console.log(SWdata[selectData].name)
-    //     // console.log(localStorage.getItem('selectedData'));
-    // }
+    //reloads for pagination
+    function update() {
+        console.log(localStorage.getItem('page'))
+        window.location.reload()
+    }
 
 };
 
+//this is the part I think I overcooked. sifts through the groups to make the group profiles based off of their relative index
 window.addEventListener('load', (event) => {
 
     const selectedProfile = localStorage.getItem('selectedProfile')

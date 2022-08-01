@@ -15,8 +15,6 @@ function Search() {
 
     const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
     
-    let array1 = [0,10,20,30]; let array2 = [1,11,21,31]; let array3 = [2,12,22,32]; let array4 = [3,13,23,33]; let array5 = [4,14,24,34]; let array6 = [5,15,25,35]; let array7 = [6,16,26,36]; let array8 = [7,17,27,37]; let array9 = [8,18,28,38]; let array10 = [9,19,29,39]
-
     useEffect(() => {
 
         starwars.getPeople().then((response) => {
@@ -48,7 +46,9 @@ function Search() {
                 event => setQuery(event.target.value)}
             />
   
-            <br/><br/>
+            <br/>
+
+            <p>Filter your results</p>
             
             <button className="cats" onClick={
                 () => filter(catData) + localStorage.setItem('currentDataGroup', "cats")
@@ -72,6 +72,8 @@ function Search() {
             <br/><br/><hr/>
 
             <div className="listBox">
+
+                <p>Click to See More</p>
 
                 {useData.filter(item => {
 
@@ -100,7 +102,8 @@ function Search() {
                             <div className="listedName" key={index}>
                                 <img className='catImgs' src={item.url} alt='cat'/>
                                 <p onClick={
-                                    () => localStorage.setItem('selectedProfile', index) + update() 
+                                    () => localStorage.setItem('selectedProfile', index) + 
+                                    localStorage.setItem('page', 'profile') + update() 
                                 } ><u>{catNames[index].name}</u></p>
                             </div>
                         )
@@ -115,79 +118,18 @@ function Search() {
         
     )
 
+    //selects the filter being used
     function filter(props){
         setUseData(props)
+        console.log(setUseData)
     }
 
+    //updates the values for pagination... had to learn the hard way that useState doesnt automatically update when it changes
     function update() {
         console.log(localStorage.getItem('selectedProfile'))
         console.log(localStorage.getItem('page'))
         window.location.reload()
     }
-
-    // function profile(){
-        
-    //     const selectedProfile = localStorage.getItem('selectedProfile')
-    //     const BreakError = {};
-    //     let bigArray = array1.concat(array2,array3,array4,array5,array6,array7,array8,array9,array10)
-
-    //     try {
-
-    //         bigArray.filter(item => {
-    //             if (array1.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array1)
-    //                 throw BreakError
-    //             } else if (array2.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array2)
-    //                 throw BreakError
-    //             } else if (array3.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array3)
-    //                 throw BreakError
-    //             } else if (array4.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array4)
-    //                 throw BreakError
-    //             } else if (array5.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array5)
-    //                 throw BreakError
-    //             } else if (array6.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array6)
-    //                 throw BreakError
-    //             } else if (array7.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array7)
-    //                 throw BreakError
-    //             } else if (array8.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array8)
-    //                 throw BreakError
-    //             } else if (array9.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array9)
-    //                 throw BreakError
-    //             } else if (array10.includes(Number(selectedProfile))){
-    //                 console.log(selectedProfile)
-    //                 console.log(array10)
-    //                 throw BreakError
-    //             }
-    //         })
-
-    //     } catch (err) {
-
-    //         if (err !== BreakError) throw err;
-
-    //     }
-
-    // }
-
-
-
-    
 
 }
 

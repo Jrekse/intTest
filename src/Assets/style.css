@@ -55,35 +55,88 @@ button{
     margin-bottom: 5px;
     border-radius: 25px;
 }
+
+
 .genProfile{
     width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+    'top'
+    'bottom'
+    ;
 }
-.profTop{
-    height: 49%;
-    border-bottom: 2px solid black;
-}
-.profCaptain{
-    width: 32%;
-    border-right: 2px solid black;
-}
-.profShip{
-    width: 33%;
-    border-right: 2px solid black;
-}
-.profPlanet{
-    width: 33%;
-}
-.profBottom{
-    height: 50%;
-}
-.profCrew{
-    width: 50%;
-    border-right: 2px solid black;
-}
-.govCat{
-    width: 49%;
+.backBtn{
+    color: blue;
 }
 
+.profTop{
+    display: grid;
+    grid-area: top;
+    border-bottom: 2px solid black;
+    grid-template-areas: 'one two three';
+}
+.profCaptain{
+    border-right: 2px solid black;
+    grid-area: one;
+    padding: 10px;
+}
+.profShip{
+    border-right: 2px solid black;
+    grid-area: two;
+    padding: 10px;
+}
+.profPlanet{
+    grid-area: three;
+    padding: 10px;
+}
+
+.profBottom{
+    display: grid;
+    grid-area: bottom;
+    grid-template-areas: 'four five';
+}
+.profCrew{
+    border-right: 2px solid black;
+    grid-area: four;
+    display: grid;
+    grid-template-areas: 
+    'topper topper'
+    'left right'
+    ;
+    padding: 10px;
+}
+.leftCrew{
+    grid-area: left;
+    margin-right: 5px;
+}
+.rightCrew{
+    grid-area: right;
+}
+.govCat{
+    grid-area: five;
+    text-align: center;
+    padding-left: 10px;
+}
+.profCatImg{
+    width: 90%;
+    max-width: 500px;
+    margin-top: 10px;
+}
+.profCatList{
+    width: 60%;
+    height: 60%;
+    margin-left: 25%;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 25px;
+}
+.topper{
+    grid-area: topper;
+    text-align: left;
+    font-weight: 700;
+}
 
 @media only screen and (max-width: 600px) {
     .searchInput{
