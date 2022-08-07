@@ -1,5 +1,8 @@
 body{
-    background-color: #4CC9F0;
+    margin: 0px;
+}
+#btn{
+    background-color: white;
 }
 .catImgs{
     width: 50%;
@@ -7,7 +10,7 @@ body{
 }
 .searchBar{
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
 }
 .searchInput{
     width: 25%;
@@ -21,39 +24,24 @@ button{
     padding-right: 10px;
 }
 .cats{
-    background-color: #4361EE;
     border-radius: 10px 0px 0px 10px;
-    color: white;
 }
 .reset{
-    background-color: #F72585;
     border-radius: 0px 10px 10px 0px;
-    color: white;
-}
-.all{
-    background-color: #3F37C9;
-    color:white;
-}
-.starWarsPl{
-    background-color: #B5179E;
-    color: white;
-}
-.starWarsS{
-    background-color: #7209B7;
-    color: white;
-}
-.starWarsPe{
-    background-color: #480CA8;
-    color: white;
 }
 .listedName{
     color: blue;
     width: 50%;
     margin-left: 25%;
-    background-color: white;
     padding: 5px;
     margin-bottom: 5px;
-    border-radius: 25px;
+}
+.listedName:hover{
+    cursor: pointer;
+}
+.topSection{
+    background-color: whitesmoke;
+    padding: 10px;
 }
 
 
@@ -68,6 +56,9 @@ button{
 }
 .backBtn{
     color: blue;
+}
+.backBtn:hover{
+    cursor: pointer;
 }
 
 .profTop{

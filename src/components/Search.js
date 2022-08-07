@@ -55,34 +55,37 @@ function useSearch() {
 
             <section className="searchBar">
 
-                <input placeholder="What are you looking for?" className="searchInput" onChange={
-                    event => setQuery(event.target.value)}
-                />
-    
-                <br/>
+                <div className="topSection">
 
-                <p>Filter your results</p>
-                
-                <button className="cats" onClick={
-                    () => filter(catData) + setDataGroup("cats")
-                }>Cats</button>
-                <button className="all" onClick={
-                    () => filter(SWdata.concat(shipData.concat(planetData.concat(catNames)))) + setDataGroup("sw")
-                }>All</button>
-                <button className="starWarsPe" onClick={
-                    () => filter(SWdata) + setDataGroup("sw")
-                }>People</button>
-                <button className="starWarsS" onClick={
-                    () => filter(shipData) + setDataGroup("sw")
-                }>Ships</button>
-                <button className="starWarsPl" onClick={
-                    () => filter(planetData) + setDataGroup("sw")
-                }>Planets</button>
-                <button className="reset" onClick={
-                    () => window.location.reload()
-                }>Reset</button>
+                    <input placeholder="What are you looking for?" className="searchInput" onChange={
+                        event => setQuery(event.target.value)}
+                    />
+        
+                    <br/>
 
-                <br/><br/><hr/>
+                    <p>Filter your results</p>
+                    
+                    <button className="cats" id="btn" onClick={
+                        () => filter(catData) + setDataGroup("cats")
+                    }>Cats</button>
+                    <button className="all" id="btn" onClick={
+                        () => filter(SWdata.concat(shipData.concat(planetData.concat(catNames)))) + setDataGroup("sw")
+                    }>All</button>
+                    <button className="starWarsPe" id="btn" onClick={
+                        () => filter(SWdata) + setDataGroup("sw")
+                    }>People</button>
+                    <button className="starWarsS" id="btn" onClick={
+                        () => filter(shipData) + setDataGroup("sw")
+                    }>Ships</button>
+                    <button className="starWarsPl" id="btn" onClick={
+                        () => filter(planetData) + setDataGroup("sw")
+                    }>Planets</button>
+                    <button className="reset" id="btn" onClick={
+                        () => window.location.reload()
+                    }>Reset</button>
+
+                    <br/><br/><hr/>
+                </div>
 
                 <div className="listBox">
 
