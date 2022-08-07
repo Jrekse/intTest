@@ -36,7 +36,12 @@ function useSearch() {
 
         cats.get100Cats().then((response) => {
             console.log("cats", response);
-            setCatData(response);
+            let newArr = []
+            response.map((item, index) => {
+                let its = Object.assign(item, catNames[index])
+                newArr.push(its)
+            })
+            setCatData(newArr)
         });
 
     }, []);
@@ -85,8 +90,6 @@ function useSearch() {
 
                     {useData.filter(item => {
 
-                        console.log(useData)
-
                         if (query === '') {
                             return item;
                         } else if (item.name.toLowerCase().includes(query.toLowerCase())) {
@@ -115,7 +118,7 @@ function useSearch() {
                                     <img className='catImgs' src={item.url} alt='cat'/>
                                     <p onClick={
                                         () => update(index)
-                                    } ><u>{catNames[index].name}</u></p>
+                                    } ><u>{item.name}</u></p>
                                     <p className="delete" onClick={
                                         () => remove(index)
                                     }>Delete item</p>
