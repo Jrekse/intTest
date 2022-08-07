@@ -3,7 +3,7 @@ import starwars from "../APIs/starwars";
 import cats from '../APIs/cats';
 
 
-function Search() {
+function useSearch() {
 
     const [query, setQuery] = useState("");
     const [useData, setUseData] = useState([]);
@@ -11,12 +11,12 @@ function Search() {
     const [shipData, setShipData] = useState([]);
     const [planetData, setPlanetData] = useState([]);
     const [catData, setCatData] = useState([])
-
-    const dataGroup = localStorage.getItem('currentDataGroup')
+    const [dataGroup, setDataGroup] = useState('')
+    const [paginate, setPagination] = useState('')
+    const [selectedProfile, selectProfile] = useState()
 
     const catNames = [{name:'Cherie'}, {name:'Terry'}, {name:'Larry'}, {name:'Gary'}, {name:'Barry'}, {name:'Carrie'}, {name:'Mary'}, {name:'Jerry'}, {name:'Peri'}, {name:'Tod'}]
 
-    
     let filteredItems
     
     useEffect(() => {
@@ -43,87 +43,94 @@ function Search() {
 
 
 
-    return (
-        <section className="searchBar">
+    return {
+        paginate,
+        selectedProfile,
+        render:(
 
-            <input placeholder="What are you looking for?" className="searchInput" onChange={
-                event => setQuery(event.target.value)}
-            />
-  
-            <br/>
+            <section className="searchBar">
 
-            <p>Filter your results</p>
-            
-            <button className="cats" onClick={
-                () => filter(catData) + localStorage.setItem('currentDataGroup', "cats")
-            }>Cats</button>
-            <button className="all" onClick={
-                () => filter(SWdata.concat(shipData.concat(planetData.concat(catNames)))) + localStorage.setItem('currentDataGroup', "sw")
-            }>All</button>
-            <button className="starWarsPe" onClick={
-                () => filter(SWdata) + localStorage.setItem('currentDataGroup', "sw")
-            }>People</button>
-            <button className="starWarsS" onClick={
-                () => filter(shipData) + localStorage.setItem('currentDataGroup', "sw")
-            }>Ships</button>
-            <button className="starWarsPl" onClick={
-                () => filter(planetData) + localStorage.setItem('currentDataGroup', "sw")
-            }>Planets</button>
-            <button className="reset" onClick={
-                () => window.location.reload()
-            }>Reset</button>
+                <input placeholder="What are you looking for?" className="searchInput" onChange={
+                    event => setQuery(event.target.value)}
+                />
+    
+                <br/>
 
-            <br/><br/><hr/>
+                <p>Filter your results</p>
+                
+                <button className="cats" onClick={
+                    () => filter(catData) + setDataGroup("cats")
+                }>Cats</button>
+                <button className="all" onClick={
+                    () => filter(SWdata.concat(shipData.concat(planetData.concat(catNames)))) + setDataGroup("sw")
+                }>All</button>
+                <button className="starWarsPe" onClick={
+                    () => filter(SWdata) + setDataGroup("sw")
+                }>People</button>
+                <button className="starWarsS" onClick={
+                    () => filter(shipData) + setDataGroup("sw")
+                }>Ships</button>
+                <button className="starWarsPl" onClick={
+                    () => filter(planetData) + setDataGroup("sw")
+                }>Planets</button>
+                <button className="reset" onClick={
+                    () => window.location.reload()
+                }>Reset</button>
 
-            <div className="listBox">
+                <br/><br/><hr/>
 
-                <p>Click to See More</p>
+                <div className="listBox">
 
-                {useData.filter(item => {
+                    <p>Click to See More</p>
 
-                    if (query === '') {
-                        return item;
-                    } else if (item.name.toLowerCase().includes(query.toLowerCase())) {
-                        return item;
-                    }
+                    {useData.filter(item => {
 
-                }).map((item, index) => {
+                        console.log(useData)
 
-                    if (dataGroup === 'sw') {
+                        if (query === '') {
+                            return item;
+                        } else if (item.name.toLowerCase().includes(query.toLowerCase())) {
+                            return item;
+                        }
 
-                        return  (
-                            <div className="listedName" id="mainList" key={index}> 
-                                <p id="mainListItem" onClick={
-                                    () => localStorage.setItem('selectedProfile', index) + 
-                                    localStorage.setItem('page', 'profile')  + update()
-                                }><u>{item.name}</u></p>
-                                <p className="delete" onClick={
-                                    () => remove(index)
-                                }>Delete item</p>
-                            </div>
-                        )
+                    }).map((item, index) => {
 
-                    } else if (dataGroup === 'cats'){
+                        if (dataGroup === 'sw') {
 
-                        return (
-                            <div className="listedName" key={index}>
-                                <img className='catImgs' src={item.url} alt='cat'/>
-                                <p onClick={
-                                    () => localStorage.setItem('selectedProfile', index) + 
-                                    localStorage.setItem('page', 'profile') + update() 
-                                } ><u>{catNames[index].name}</u></p>
-                            </div>
-                        )
+                            return  (
+                                <div className="listedName" id="mainList" key={index}> 
+                                    <p id="mainListItem" onClick={
+                                        () => update(index)
+                                    }><u>{item.name}</u></p>
+                                    <p className="delete" onClick={
+                                        () => remove(index)
+                                    }>Delete item</p>
+                                </div>
+                            )
 
-                    }
-                    
-                })}
-            </div>
+                        } else if (dataGroup === 'cats'){
 
-        </section>
+                            return (
+                                <div className="listedName cat" key={index}>
+                                    <img className='catImgs' src={item.url} alt='cat'/>
+                                    <p onClick={
+                                        () => update(index)
+                                    } ><u>{catNames[index].name}</u></p>
+                                    <p className="delete" onClick={
+                                        () => remove(index)
+                                    }>Delete item</p>
+                                </div>
+                            )
 
-        
-    )
+                        }
+                        
+                    })}
+                </div>
+
+            </section>
+
+        )
+    }
 
     function remove(props){
         const items = useData[props]
@@ -140,14 +147,13 @@ function Search() {
     }
 
     //updates the values for pagination... had to learn the hard way that useState doesnt automatically update when it changes
-    function update() {
-        console.log(localStorage.getItem('selectedProfile'))
-        console.log(localStorage.getItem('page'))
-        window.location.reload()
+    function update(props) {
+        setPagination('profile') 
+        selectProfile(props)
     }
 
 }
 
 
 
-export default Search;
+export default useSearch;

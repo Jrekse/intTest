@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Search from "./Search";
+import useSearch from "./Search";
 import Profile from "./genProfile"
 import '../Assets/style.css'
 
 function MainFunctional() {
 
+
+  // this was fun to learn, I have never tried to pass state up to a parent
+  // component using this kind of function
+  const {render, paginate, selectedProfile} = useSearch()
+
   //pagination
-  if(localStorage.getItem('page') === "search"){
-    return(<Search/>)
-  } else if (localStorage.getItem('page') === "profile"){
-    return (<Profile/>)
+  if(paginate === "search"){
+    return(<>{render}</>)
+  } else if (paginate === "profile"){
+    return (<Profile {...{selectedProfile}}/>)
   } else {
-    return(<Search/>)
+    return(<>{render}</>)
   }
 
 }
